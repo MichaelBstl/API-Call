@@ -5,19 +5,25 @@
 </head>
 
 <body>
-    <script>
-      url = 'https://api.openweathermap.org/data/2.5/weather';
-      zip = '63103';
-      countryCode = 'us';
-      appid = 'b013bd736f797bc3caec75767bee3544';
-      units = 'imperial'
-      fullUrl = url + '?zip=' + zip + ',' + countryCode + '&appid=' + appid +
-                '&units=' + units;
-      console.log('fullUrl:' + fullUrl);
-      fetch(fullUrl)
-      .then(response => response.json())
-          .then(data => console.log(data));
-  </script>
 </body>
+      Temp: <span id="temperature">--</span>
+      <script>
+        url = 'https://api.openweathermap.org/data/2.5/weather';
+        zip = '63103';
+        countryCode = 'us';
+        appid = 'b013bd736f797bc3caec75767bee3544';
+        units = 'imperial';
+        fullUrl = url + '?zip=' + zip + ',' + countryCode + '&appid=' + appid +
+                  '&units=' + units;
+        console.log('fullUrl:' + fullUrl);
+        fetch(fullUrl)
+          .then(response => response.json())
+          .then(data => displayWeather(data));
 
+        function displayWeather(weatherResponse) {
+          var htmlTemp = document.getElementById('temperature');
+          htmlTemp.innerText = weatherResponse.main.temp;
+        }
+    </script>
+  
 </html>
